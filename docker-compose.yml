@@ -13,7 +13,6 @@ services:
     image: 'mcgi-prod-tools:latest'
     environment:
       - DB_HOST=db
-      - BASE_URL=http://192.168.0.120:5000
       - PORT=5000
     ports:
       - "5000:5000"
@@ -21,6 +20,7 @@ services:
       - db
     volumes:
       - .:/app
+      - /var/local/src:/app/public/src
 
 volumes:
   dbdata:
