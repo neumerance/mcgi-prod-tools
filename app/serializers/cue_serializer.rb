@@ -4,6 +4,6 @@ class CueSerializer
 
   attribute :title, &:name
   attribute :src do |object|
-    "http://localhost:5000#{object.path}"
+    "#{ENV['BASE_URL']}#{object.path}"
   end
 end
