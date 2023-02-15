@@ -1,7 +1,7 @@
 namespace :import do
   desc "import all images to database"
   task lyrics: :environment do
-    lyrics = Dir["public/Lyrics/**/*.jpg"]
+    lyrics = Dir["public/src/Lyrics/**/*.jpg"]
 
     lyrics.each do |lyric|
       puts "process: #{lyric}"

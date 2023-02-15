@@ -3,7 +3,5 @@ class CueSerializer
   attributes :id
 
   attribute :title, &:name
-  attribute :src do |object|
-    "#{ENV['BASE_URL']}#{object.path}"
-  end
+  attribute :src, &:path
 end
