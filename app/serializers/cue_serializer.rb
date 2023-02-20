@@ -3,5 +3,4 @@ class CueSerializer
   attributes :id
 
   attribute :title, &:name
-  attribute :src, &:path
 end

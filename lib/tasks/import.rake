@@ -1,12 +1,21 @@
 namespace :import do
   desc "import all images to database"
   task lyrics: :environment do
-    lyrics = Dir["public/src/**/*.jpg"]
+    s3 = Aws::S3::Client.new
+    bucket = ENV['AWS_S3_LYRICS_BUCKET']
+    resp = s3.list_objects(bucket: bucket)
 
-    lyrics.each do |lyric|
-      puts "process: #{lyric}"
-      cue = Cue.find_or_initialize_by(name: File.basename(lyric))
-      cue.update(path: URI.encode(lyric.gsub!('public', '')))
+    resp.contents.each do |object|
+      cue = Cue.find_or_initialize_by(name: object.key)
+
+      signer = Aws::S3::Presigner.new
+      url, headers = signer.presigned_request(
+        :get_object, 
+        bucket: bucket, 
+        key: object.key
+      )
+
+      cue.update(path: url)
     end
   end
 end

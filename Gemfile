@@ -48,3 +48,5 @@ gem 'fast_jsonapi'
 # cors management
 gem 'rack-cors'
 
+# AWS S3
+gem 'aws-sdk-s3', '~> 1.119', '>= 1.119.1'
