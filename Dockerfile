@@ -17,6 +17,7 @@ RUN apk add --update --virtual \
   git \
   tzdata \
   && rm -rf /var/cache/apk/*
+RUN gem install foreman
 
 WORKDIR /app
 ADD Gemfile /app/Gemfile
