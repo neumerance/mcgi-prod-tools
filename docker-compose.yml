@@ -19,7 +19,7 @@ services:
       - cache:/var/lib/redis/data
   api:
     build: .
-    image: 'mcgi-prod-tools:${TAG}'
+    image: 'mcgiprodtools/api:${TAG}'
     restart: always
     environment:
       - DB_HOST=db
@@ -32,7 +32,6 @@ services:
       - SIDEKIQ_USERNAME=${SIDEKIQ_USERNAME}
       - SIDEKIQ_PASSWORD=${SIDEKIQ_PASSWORD}
       - RAILS_ENV=${RAILS_ENV}
-      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
     ports:
       - "5000:5000"
     depends_on:
