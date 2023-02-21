@@ -16,11 +16,8 @@ class CuesController < ApplicationController
   end
 
   def generate
-    s3 = Aws::S3::Client.new
-    resp = s3.list_objects(bucket: ENV['AWS_S3_LYRICS_BUCKET'])
+    ImportCueWorker.perform_async
 
-    resp.contents.each do |object|
-      Cue.find_or_create_by(name: object.key)
-    end
+    render json: { message: 'import is on its way' }
   end
 end

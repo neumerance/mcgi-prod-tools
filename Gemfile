@@ -50,3 +50,7 @@ gem 'rack-cors'
 
 # AWS S3
 gem 'aws-sdk-s3', '~> 1.119', '>= 1.119.1'
+
+# Background jobs
+gem 'sidekiq'
+gem 'redis-rails'
