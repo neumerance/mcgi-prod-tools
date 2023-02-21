@@ -4,8 +4,7 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      - POSTGRES_PASSWORD=ABC12abc
-      - PORT=5000
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
@@ -24,7 +23,7 @@ services:
     restart: always
     environment:
       - DB_HOST=db
-      - PORT=5000
+      - PORT=${API_PORT}
       - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - AWS_REGION=${AWS_REGION}
@@ -33,6 +32,7 @@ services:
       - SIDEKIQ_USERNAME=${SIDEKIQ_USERNAME}
       - SIDEKIQ_PASSWORD=${SIDEKIQ_PASSWORD}
       - RAILS_ENV=${RAILS_ENV}
+      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
     ports:
       - "5000:5000"
     depends_on:
