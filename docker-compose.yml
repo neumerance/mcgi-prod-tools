@@ -28,7 +28,7 @@ services:
       - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
       - AWS_REGION=${AWS_REGION}
       - AWS_S3_LYRICS_BUCKET=${AWS_S3_LYRICS_BUCKET}
-      - REDIS_URL=${REDIS_URL}
+      - REDIS_URL=redis://cache:6379
       - SIDEKIQ_USERNAME=${SIDEKIQ_USERNAME}
       - SIDEKIQ_PASSWORD=${SIDEKIQ_PASSWORD}
       - RAILS_ENV=${RAILS_ENV}
@@ -38,10 +38,6 @@ services:
     depends_on:
       - cache
       - db
-    volumes:
-      - appdir:/app
-
 volumes:
   dbdata:
-  appdir:
   cache:
