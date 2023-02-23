@@ -27,4 +27,4 @@
 /config/master.key
 .env
 /public/src
-config/credentials.yml.enc
+# config/credentials.yml.enc
